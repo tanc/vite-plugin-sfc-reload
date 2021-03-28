@@ -14,7 +14,7 @@
 <br>
 
 Based on the vite-plugin-full-reload plugin and adapted for use with SFC Drupal files.
-[vite-plugin-full-reload]: https://github.com/ElMassimo/vite-plugin-full-reload
+[vite-plugin-full-reload](https://github.com/ElMassimo/vite-plugin-full-reload)
 
 ## Why?
 
@@ -88,7 +88,7 @@ The following options can be provided:
 
 ## Acknowledgements
 
-- <kbd>[vite-plugin-full-reload]: https://github.com/ElMassimo/vite-plugin-full-reload</kbd>
+- <kbd>[vite-plugin-full-reload](https://github.com/ElMassimo/vite-plugin-full-reload)</kbd>
 
   The original plugin this is **heavily** based on (forked off of), thank you!
 
