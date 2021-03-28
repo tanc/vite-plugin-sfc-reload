@@ -1,31 +1,24 @@
 <h2 align='center'><samp>vite-plugin-sfc-reload</samp></h2>
 
-<p align='center'>Automatically reload the page when files are modified</p>
+<p align='center'>Automatically reload the page when `<template>` sections of Drupal SFC files are modified</p>
 
 <p align='center'>
   <a href='https://www.npmjs.com/package/vite-plugin-sfc-reload'>
     <img src='https://img.shields.io/npm/v/vite-plugin-sfc-reload?color=222&style=flat-square'>
   </a>
-  <a href='https://github.com/ElMassimo/vite-plugin-sfc-reload/blob/main/LICENSE.txt'>
+  <a href='https://github.com/tanc/vite-plugin-sfc-reload/blob/main/LICENSE.txt'>
     <img src='https://img.shields.io/badge/license-MIT-blue.svg'>
   </a>
 </p>
 
 <br>
 
-[vite-plugin-sfc-reload]: https://github.com/ElMassimo/vite-plugin-sfc-reload
-[vite-plugin-live-reload]: https://github.com/arnoson/vite-plugin-live-reload
-[vite ruby]: https://github.com/ElMassimo/vite_ruby
-[js from routes]: https://github.com/ElMassimo/js_from_routes
-[picomatch]: https://github.com/micromatch/picomatch#globbing-features
+Based on the vite-plugin-full-reload plugin and adapted for use with SFC Drupal files.
+[vite-plugin-full-reload]: https://github.com/ElMassimo/vite-plugin-full-reload
 
-## Why? 🤔
+## Why?
 
-When using _[Vite Ruby]_, I wanted to see changes to server-rendered layouts and templates without having to manually reload the page.
-
-Also, in _[JS From Routes]_ path helpers are generated when Rails reload is triggered.
-
-Triggering a page reload when `config/routes.rb` is modified makes the DX very smooth.
+When developing a Drupal theme based on Single File Components it can be very useful to have both Hot Module Reloads of the CSS files as well as full page reloads if the `<template>` section changes. This plugin will watch the SFC files for changes and POST the changed component name to the `sfc/compile` callback which in turn will report back which section of the file was updated. Then the plugin decides whether the HMR is sufficient (it does nothing as HMR is already take care of) or if it should trigger a full page refresh which is needed to display template changes.
 
 ## Installation 💿
 
@@ -41,10 +34,10 @@ Add it to your plugins in `vite.config.ts`
 
 ```ts
 import { defineConfig } from 'vite'
-import FullReload from 'vite-plugin-sfc-reload'
+import SfcReload from 'vite-plugin-sfc-reload'
 
 export default defineConfig({
-  plugins: [FullReload(['config/routes.rb', 'app/views/**/*'])],
+  plugins: [SfcReload(["components/**/*.sfc"], { domain: "http://yourlocaldomain.dev" })],
 })
 ```
 
@@ -56,6 +49,12 @@ To see which file globbing options are available, check [picomatch].
 
 The following options can be provided:
 
+- <kbd>domain</kbd>
+  
+  The local development domain where the sfc_dev module is installed and responding on `/sfc/compile`
+
+  **Default:** `http://localhost`
+
 - <kbd>root</kbd>
 
   Files will be resolved against this directory.
@@ -63,7 +62,7 @@ The following options can be provided:
   **Default:** `process.cwd()`
 
   ```js
-  FullReload('config/routes.rb', { root: __dirname }),
+  SfcReload('components/**/*.sfc', { root: __dirname }),
   ```
 
 - <kbd>delay</kbd>
@@ -74,7 +73,7 @@ The following options can be provided:
   **Default:** `0`
 
   ```js
-  FullReload('app/views/**/*', { delay: 100 })
+  SfcReload('components/**/*.sfc', { delay: 100 })
   ```
 
 - <kbd>always</kbd>
@@ -84,18 +83,14 @@ The following options can be provided:
   **Default:** `true`
 
   ```js
-  FullReload('app/views/**/*', { always: false })
+  SfcReload('components/**/*.sfc', { always: false })
   ```
 
 ## Acknowledgements
 
-- <kbd>[vite-plugin-live-reload]</kbd>
+- <kbd>[vite-plugin-full-reload]: https://github.com/ElMassimo/vite-plugin-full-reload</kbd>
 
-  This is a nice plugin, I found it right before publishing this one.
-
-  I've made [two](https://github.com/arnoson/vite-plugin-live-reload/pull/3) [PRs](https://github.com/arnoson/vite-plugin-live-reload/pull/5) that were needed to support these use cases.
-
-  At this point in time they are very similar, except this library doesn't create another `chokidar` watcher.
+  The original plugin this is **heavily** based on (forked off of), thank you!
 
 ## License
 
