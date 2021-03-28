@@ -4,7 +4,7 @@
 
 <p align='center'>
   <a href='https://www.npmjs.com/package/@tanc00/vite-plugin-sfc-reload'>
-    <img src='https://img.shields.io/npm/v/vite-plugin-sfc-reload?color=222&style=flat-square'>
+    <img src='https://img.shields.io/npm/v/@tanc00/vite-plugin-sfc-reload?color=222&style=flat-square'>
   </a>
   <a href='https://github.com/tanc/vite-plugin-sfc-reload/blob/main/LICENSE.txt'>
     <img src='https://img.shields.io/badge/license-MIT-blue.svg'>
@@ -37,7 +37,11 @@ import { defineConfig } from 'vite'
 import SfcReload from 'vite-plugin-sfc-reload'
 
 export default defineConfig({
-  plugins: [SfcReload(["components/**/*.sfc"], { domain: "http://yourlocaldomain.dev" })],
+  plugins: [
+    SfcReload(['components/**/*.sfc'], {
+      domain: 'http://yourlocaldomain.dev',
+    }),
+  ],
 })
 ```
 
@@ -50,7 +54,7 @@ To see which file globbing options are available, check [picomatch].
 The following options can be provided:
 
 - <kbd>domain</kbd>
-  
+
   The local development domain where the sfc_dev module is installed and responding on `/sfc/compile`
 
   **Default:** `http://localhost`
