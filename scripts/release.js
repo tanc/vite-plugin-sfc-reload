@@ -13,7 +13,6 @@ const { prompt } = require('enquirer')
 
 const name = 'vite-plugin-sfc-reload'
 
-const isRubyLibrary = name !== 'vite-plugin-ruby'
 const pkg = jsPackage()
 
 /**
@@ -23,7 +22,7 @@ const isDryRun = args.dry
 /**
  * @type {boolean}
  */
-const skipBuild = args.skipBuild || isRubyLibrary
+const skipBuild = args.skipBuild
 
 /**
  * @type {import('semver').ReleaseType[]}
