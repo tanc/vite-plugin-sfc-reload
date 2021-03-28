@@ -3,7 +3,7 @@
 <p align='center'>Automatically reload the page when template sections of Drupal SFC files are modified</p>
 
 <p align='center'>
-  <a href='https://www.npmjs.com/package/vite-plugin-sfc-reload'>
+  <a href='https://www.npmjs.com/package/@tanc00/vite-plugin-sfc-reload'>
     <img src='https://img.shields.io/npm/v/vite-plugin-sfc-reload?color=222&style=flat-square'>
   </a>
   <a href='https://github.com/tanc/vite-plugin-sfc-reload/blob/main/LICENSE.txt'>
@@ -13,7 +13,7 @@
 
 <br>
 
-Based on the vite-plugin-full-reload plugin and adapted for use with SFC Drupal files.
+Based on the vite-plugin-full-reload plugin and adapted for use with SFC Drupal files:
 [vite-plugin-full-reload](https://github.com/ElMassimo/vite-plugin-full-reload)
 
 ## Why?

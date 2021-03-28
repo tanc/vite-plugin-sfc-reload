@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-sfc-reload",
+  "name": "@tanc00/vite-plugin-sfc-reload",
   "description": "Trigger a HMR update on CSS or JS changes or a full page reload when templates are modified",
   "version": "0.0.2",
   "main": "dist/index.js",
