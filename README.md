@@ -1,6 +1,6 @@
 <h2 align='center'><samp>vite-plugin-sfc-reload</samp></h2>
 
-<p align='center'>Automatically reload the page when `<template>` sections of Drupal SFC files are modified</p>
+<p align='center'>Automatically reload the page when template sections of Drupal SFC files are modified</p>
 
 <p align='center'>
   <a href='https://www.npmjs.com/package/vite-plugin-sfc-reload'>
