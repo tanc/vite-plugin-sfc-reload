@@ -1,0 +1,62 @@
+{
+  "name": "vite-plugin-sfc-reload",
+  "description": "Trigger a HMR update on CSS or JS changes or a full page reload when templates are modified",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "author": "Tancredi D'Onofrio <mail@tanc.me>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanc/vite-plugin-sfc-reload"
+  },
+  "homepage": "https://github.com/tanc/vite-plugin-sfc-reload",
+  "bugs": "https://github.com/tanc/vite-plugin-sfc-reload/issues",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vite",
+    "plugin",
+    "vite-plugin",
+    "vitejs",
+    "sfc",
+    "reload"
+  ],
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "dev": "npm run build -- --watch",
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "lint": "lint-staged",
+    "postinstall": "husky install",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepublishOnly": "pinst --disable && npm run build",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags && pinst --enable",
+    "release": "node scripts/release"
+  },
+  "dependencies": {
+    "chalk": "^4.1",
+    "node-fetch": "^3.0.0-beta.9",
+    "picomatch": "^2.2.2"
+  },
+  "devDependencies": {
+    "@mussi/eslint-config": "^0.5.0",
+    "@types/node": "^14.14.35",
+    "@types/picomatch": "^2.2.1",
+    "conventional-changelog-cli": "^2.1.1",
+    "eslint": "^7.22.0",
+    "husky": "^5.1.3",
+    "lint-staged": "^10.5.4",
+    "pinst": "^2.1.6",
+    "rollup": "^2.41.4",
+    "tsup": "^4.8.3",
+    "typescript": "^4.2.2",
+    "vite": "^2.1.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,vue}": [
+      "eslint --fix"
+    ]
+  }
+}
