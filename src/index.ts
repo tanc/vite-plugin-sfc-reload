@@ -120,7 +120,7 @@ export default (paths: string | string[], config: Config = {}): Plugin => ({
               `${red(`unable to access ${fetchUrl}`)} ${dim(
                 'have you enabled the sfc_dev module?'
               )}`,
-              { clear: false, timestamp: true }
+              { clear: true, timestamp: true }
             )
         }
       }
